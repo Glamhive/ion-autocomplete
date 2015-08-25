@@ -168,6 +168,12 @@ angular.module('ion-autocomplete', []).directive('ionAutocomplete', [
                         }
                     };
 
+                    compiledTemplate.scope.onScroll = function onScroll($event) {
+                        if(cordova && cordova.plugins && cordova.plugins.Keyboard && cordova.plugins.Keyboard.isVisible) {
+                            cordova.plugins.Keyboard.close();
+                        }
+                    };
+
                     // watcher on the search field model to update the list according to the input
                     compiledTemplate.scope.$watch('searchQuery', function (query) {
 
